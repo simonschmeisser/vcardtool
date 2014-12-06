@@ -28,27 +28,65 @@ std::vector<contact> VCardReader::readFromFile(const std::string &filename)
                 std::cout << "tag: " << tag << std::endl;
 
                 if (tag == "N") {
-                    std::string last_name;
-                    std::getline(iline, last_name, ';');
-                    if (!last_name.empty())
-                        new_contact.last_name = last_name;
+                        std::string last_name;
+                        std::getline(iline, last_name, ';');
+                        if (!last_name.empty())
+                            new_contact.setLastName(last_name);
 
-                    std::string first_name;
-                    std::getline(iline, first_name, ';');
-                    if (!first_name.empty())
-                        new_contact.first_name = first_name;
+                        std::string first_name;
+                        std::getline(iline, first_name, ';');
+                        if (!first_name.empty())
+                            new_contact.setFirstName(first_name);
 
-                    std::string middle_name;
-                    std::getline(iline, middle_name, ';');
-                    if (!middle_name.empty())
-                        new_contact.middle_name = middle_name;
+                        std::string middle_name;
+                        std::getline(iline, middle_name, ';');
+                        if (!middle_name.empty())
+                            new_contact.setMiddleName(middle_name);
 
-                    std::string title;
-                    std::getline(iline, title, ';');
-                    if (!title.empty())
-                        new_contact.title = title;
+                        std::string title;
+                        std::getline(iline, title, ';');
+                        if (!title.empty())
+                            new_contact.setTitle(title);
 
+                } else if (tag == "FN") {
+                    std::string formatted_name;
+                    std::getline(iline, formatted_name);
+                    if (!formatted_name.empty())
+                        new_contact.setFormattedName(formatted_name);
 
+                } else if (tag == "EMAIL") {
+                    std::string category;
+                    std::string address;
+                    email mail;
+                    std::getline(iline, address);
+                    if (!address.empty())
+                        mail.setAddress(address);
+                    new_contact.addEmail(mail);
+
+                } else if (tag == "EMAIL;HOME") {
+                    std::string address;
+                    email mail;
+                    mail.setCategory("HOME");
+                    std::getline(iline, address);
+                    if (!address.empty())
+                        mail.setAddress(address);
+                    new_contact.addEmail(mail);
+
+                } else if (tag == "EMAIL;WORK") {
+                    std::string address;
+                    email mail;
+                    mail.setCategory("WORK");
+                    std::getline(iline, address);
+                    if (!address.empty())
+                        mail.setAddress(address);
+                    new_contact.addEmail(mail);
+
+                } else if (tag == "TEL") {
+
+                } else if (tag == "NOTE") {
+
+                } else {
+                    std::cout << "Unhandled tag:" << tag << std::endl;
                 }
             }
             contacts.push_back(new_contact);
