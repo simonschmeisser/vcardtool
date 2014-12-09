@@ -86,7 +86,14 @@ std::vector<contact> VCardReader::readFromFile(const std::string &filename)
                     new_contact.addNotes(note);
 
                 } else if (tag == "ADR") {
-
+                    std::string adr;
+                    address a;
+                    std::getline(iline, adr);
+                    if (!adr.empty()) {
+                        a.setPostAddress(adr);
+                        a.setCategory(param);
+                        new_contact.addAddress(a);
+                    }
                 } else if (tag == "PHOTO") {
                     //need to prepend the data that is in line
                     std::string data;

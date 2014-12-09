@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 
+#include "address.h"
 #include "email.h"
 #include "phone.h"
 
@@ -29,6 +30,9 @@ public:
     std::vector<std::string> getNotes() const;
     void addNotes(const std::string &value);
 
+    std::vector<address> getAddresses() const;
+    void addAddress(const address &value);
+
 private:
     std::string lastName;
     std::string middleName;
@@ -39,6 +43,8 @@ private:
 
     std::vector<phone> phones;
     std::vector<email> emails;
+
+    std::vector<address> addresses;
 
     std::vector<std::string> notes;
 };

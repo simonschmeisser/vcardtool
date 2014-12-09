@@ -69,6 +69,16 @@ void contact::addNotes(const std::string &value)
 {
     notes.push_back(value);
 }
+std::vector<address> contact::getAddresses() const
+{
+    return addresses;
+}
+
+void contact::addAddress(const address &value)
+{
+    addresses.push_back(value);
+}
+
 
 
 std::string contact::getLastName() const
