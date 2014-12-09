@@ -26,6 +26,9 @@ public:
     std::vector<email> getEmails() const;
     void addEmail(const email &value);
 
+    std::string getNotes() const;
+    void setNotes(const std::string &value);
+
 private:
     std::string lastName;
     std::string middleName;
@@ -36,6 +39,8 @@ private:
 
     std::vector<phone> phones;
     std::vector<email> emails;
+
+    std::string notes;
 };
 
 #endif
