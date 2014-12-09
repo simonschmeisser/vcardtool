@@ -60,14 +60,14 @@ void contact::addEmail(const email &value)
 {
     emails.push_back(value);
 }
-std::string contact::getNotes() const
+std::vector<std::string> contact::getNotes() const
 {
     return notes;
 }
 
-void contact::setNotes(const std::string &value)
+void contact::addNotes(const std::string &value)
 {
-    notes = value;
+    notes.push_back(value);
 }
 
 

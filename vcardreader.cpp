@@ -83,7 +83,7 @@ std::vector<contact> VCardReader::readFromFile(const std::string &filename)
                 } else if (tag == "NOTE") {
                     std::string note;
                     std::getline(iline, note);
-                    new_contact.setNotes(note);
+                    new_contact.addNotes(note);
 
                 } else if (tag == "ADR") {
 
